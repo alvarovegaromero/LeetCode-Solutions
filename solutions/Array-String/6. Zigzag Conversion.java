@@ -85,3 +85,50 @@ class Solution {
         return result.toString();
     }
 }
+
+// Third Approach - More modular and readable
+// Time Complexity: O(n) - Space Complexity: O(n)
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1 || s.length() <= numRows)
+            return s;
+
+        StringBuilder[] rows = initializeRows(numRows);
+
+        fillRowsZigZag(s, rows);
+        
+        return joinRows(rows, s.length());
+    }
+
+    private StringBuilder[] initializeRows(int numRows) {
+        StringBuilder[] rows = new StringBuilder[numRows];
+        
+        for (int i = 0; i < numRows; i++)
+            rows[i] = new StringBuilder();
+        
+        return rows;
+    }
+
+    private void fillRowsZigZag(String s, StringBuilder[] rows) {
+        int currentRow = 0;
+        int direction = 1;
+
+        for (char c : s.toCharArray()) {
+            rows[currentRow].append(c);
+
+            if (currentRow == 0) direction = 1;
+            else if (currentRow == rows.length - 1) direction = -1;
+
+            currentRow += direction;
+        }
+    }
+
+    private String joinRows(StringBuilder[] rows, int totalLength) {
+        StringBuilder result = new StringBuilder(totalLength);
+        
+        for (StringBuilder row : rows)
+            result.append(row);
+        
+        return result.toString();
+    }
+}
