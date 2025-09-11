@@ -23,7 +23,7 @@ class Solution {
                         right = mid;
                 }
 
-                // Replace smallest num greater or equal than num;
+                // Replace first number greater or equal than num; 
                 subsequence.set(left, num);
             }
         }
