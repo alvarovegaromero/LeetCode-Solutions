@@ -40,9 +40,9 @@ class TaskManager {
     public int execTop() {
         while (!priorityQueue.isEmpty()) {
             int[] task = priorityQueue.poll();
-            int priority = t[0], taskId = task[1];
-            
-            if (taskIdPriority.getOrDefault(id, -2) == priority) {
+            int priority = task[0], taskId = task[1];
+
+            if (taskIdPriority.getOrDefault(taskId, -2) == priority) {
                 taskIdPriority.put(taskId, -1);
                 return taskIdOwner.getOrDefault(taskId, -1);
             }
